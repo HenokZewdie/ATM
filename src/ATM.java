@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ATM {
@@ -5,16 +6,51 @@ public class ATM {
 	private int accNumP, PIN;
 	private double balance;
 	private String name; 
-	public ATM(){
-		
-	}
+	private int newAccount, newPIN;
+	accountInfor accOBJ = new accountInfor();
+	Scanner input = new Scanner(System.in);
 	
+	public ATM(){}
 	public ATM(int ACOUNT, int PINUMBER, double d, String name) {
 		this.accNumP=ACOUNT;
 		this.PIN = PINUMBER;
 		this.balance=d;
 		this.name=name;
 	}
+	public void prompt() throws IOException {
+		
+	System.out.println("Enter Account Number : ");
+	newAccount = input.nextInt();
+	System.out.println("Enter Your Pin : ");
+	newPIN = input.nextInt();
+	accOBJ.accout(newAccount, newPIN);// call the method To validate the Acc and PIN
+	}
+	
+	public void serviceType()throws IOException{
+		
+		System.out.println("Which Service you want to get? Deposit(d)   Withdrawal(w)   Balance(b)");
+		String ServType = input.nextLine();
+		if(ServType.equalsIgnoreCase("deposit") || ServType.equalsIgnoreCase("d")){
+			System.out.println("How much do you want to save?  ");
+			double depAmount = input.nextDouble();
+			accOBJ.deposit(depAmount);
+			
+		}
+		else if (ServType.equalsIgnoreCase("withdrawal") || ServType.equalsIgnoreCase("w")){
+			System.out.println("How much do you want to withdrawal?  ");
+			double withAmount = input.nextDouble();
+			accOBJ.withdrawal(withAmount);
+		}
+		else if(ServType.equalsIgnoreCase("balance") || ServType.equalsIgnoreCase("b")){
+			getBalance();
+		}
+		else {System.out.println("Wrong Input");}
+			
+		//accOBJ.accout(newAccount, newPIN);
+		}
+	
+	
+	
 	public int getAccNumP() {
 		return accNumP;
 	}
@@ -28,94 +64,6 @@ public class ATM {
 	}
 
 	public void setPIN(int pIN) {
-		PIN = pIN;
-	}
-	
-	{
-		int accNum, PIN;
-		double deposit, Balance = 0.0; 
-		String Name;
-		Scanner input = new Scanner(System.in);
-
-		String ServType; //Service type
-
-		System.out.println("Enter your 6 digit account Number: ");
-		accNum = input.nextInt();
-		System.out.println("Enter your 4 digit PIN Number: ");
-		PIN = input.nextInt();
-//		accountInfor accOBJ = new accountInfor(accNum, PIN);
-	
-	}
-
-	
-}
-
-
-
-/*
-		
-		//while(){}
-		System.out.println("Which Service you want to get? Deposit   Withdrawal   Balance");
-		ServType = input.nextLine();
-
-		if(ServType.equalsIgnoreCase("Deposit")){
-			System.out.println("How much do you want to deposite? ");
-			deposit =input.nextDouble();
-
-		}
-		else if (ServType.equalsIgnoreCase("Withdrawal")){}
-		else if (ServType.equalsIgnoreCase("Balance")){}
-		else {System.out.println("Wrong Service");}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*public ATM(int AccNum, int pin, double Balance, String Name){
-		this.accNum = AccNum;
-		this.PIN = pin;
-		this.balance = Balance;
-		this.name = Name;
-
-	}
-
-	public static int getAccNum() {
-		return accNum;
-	}
-
-	public static void setAccNum(int accNum) {
-		ATM.accNum = accNum;
-	}
-
-	public static int getPIN() {
-		return PIN;
-	}
-
-	public static void setPIN(int pIN) {
 		PIN = pIN;
 	}
 
@@ -133,5 +81,8 @@ public class ATM {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
- */
+	}
+	
+
+	
+}
