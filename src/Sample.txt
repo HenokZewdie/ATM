@@ -1,0 +1,116 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class accountInfor {
+	static Scanner input = new Scanner(System.in);
+	static ArrayList<ATM> ATMList = new ArrayList<ATM>();
+	
+	static double Total;
+	static int index;
+	public static void main(String[] args) {
+
+		
+		 ATM ATMObj = new ATM(111111, 1111, 1000.0, "Raya");
+		 ATM ATMObj2 = new ATM(222222, 2222, 2000.0, "Fee");
+		 ATM ATMObj3 = new ATM(333333, 3333, 3000.0, "Bilo");
+		int newAccount, newPIN;
+		System.out.println("Enter Account Number : ");
+		newAccount = input.nextInt();
+		System.out.println("Enter Your Pin : ");
+		newPIN = input.nextInt();
+
+		ATMList.add(ATMObj);
+		ATMList.add(ATMObj2);
+		ATMList.add(ATMObj3);
+
+		for(index=0; index<ATMList.size();index++){
+
+			if(ATMList.get(index).getAccNumP() == newAccount){
+				if(ATMList.get(index).getPIN() == newPIN){
+					double tempBalance = ATMList.get(index).getBalance();
+					System.out.println("Which Service you want to get? Deposit   Withdrawal   Balance");
+					String ServType = input.nextLine();
+					switch(ServType){
+					
+					case "Deposit": 
+						System.out.println("How much?   ");
+						double deposit = input.nextDouble();
+						tempBalance = tempBalance + deposit;
+						System.out.println("Total is   " + tempBalance);
+					}
+				}
+			}
+			//else{System.out.println("Wrong Account or PIN");}
+		}
+	
+	}
+	
+}
+
+
+public class ATM {
+
+	private int accNumP, PIN;
+	private double balance;
+	private String name; 
+	
+	public ATM(int ACOUNT, int PINUMBER, double d, String name) {
+		this.accNumP=ACOUNT;
+		this.PIN = PINUMBER;
+		this.balance=d;
+		this.name=name;
+	}
+
+	public int getAccNumP() {
+		return accNumP;
+	}
+
+	public void setAccNumP(int accNumP) {
+		this.accNumP = accNumP;
+	}
+
+	public int getPIN() {
+		return PIN;
+	}
+
+	public void setPIN(int pIN) {
+		PIN = pIN;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+
+	
+	}
+
+
+
+/*
+		
+		//while(){}
+		
+
+		if(ServType.equalsIgnoreCase("Deposit")){
+			System.out.println("How much do you want to deposite? ");
+			deposit =input.nextDouble();
+
+		}
+		else if (ServType.equalsIgnoreCase("Withdrawal")){}
+		else if (ServType.equalsIgnoreCase("Balance")){}
+		else {System.out.println("Wrong Service");}
+*/
